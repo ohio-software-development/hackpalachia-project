@@ -1,4 +1,7 @@
 mod app;
+pub mod gmap;
+pub mod navbar;
+pub mod SearchBar;
 
 use app::App;
 
