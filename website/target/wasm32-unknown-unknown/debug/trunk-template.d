@@ -1,1 +1,0 @@
-/Users/bradyphelps/Desktop/yew/yew-hub/hackpalachia-project/yew-project/target/wasm32-unknown-unknown/debug/trunk-template.wasm: /Users/bradyphelps/Desktop/yew/yew-hub/hackpalachia-project/yew-project/src/app.rs /Users/bradyphelps/Desktop/yew/yew-hub/hackpalachia-project/yew-project/src/main.rs
