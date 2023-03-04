@@ -31,7 +31,7 @@ impl ImplicitClone for Location {}
 
 #[derive(PartialEq, Properties, Clone)]
 pub struct Props {
-    pub Location: Location,
+    pub location: Location,
 }
 
 impl MapComponent {
@@ -55,7 +55,7 @@ impl Component for MapComponent {
         Self {
             map: leaflet_map,
             container,
-            lat: props.Location.lat,
+            lat: props.location.lat,
         }
     }
 
@@ -73,10 +73,10 @@ impl Component for MapComponent {
     fn changed(&mut self, ctx: &Context<Self>, _prop: &<Self as Component>::Properties) -> bool {
         let props = ctx.props();
 
-        if self.lat == props.Location.lat {
+        if self.lat == props.location.lat {
             false
         } else {
-            self.lat = props.Location.lat;
+            self.lat = props.location.lat;
             self.map.setView(&LatLng::new(self.lat.0, self.lat.1), 11.0);
             true
         }
@@ -97,4 +97,43 @@ fn add_tile_layer(map: &Map) {
         &JsValue::NULL,
     )
     .addTo(map);
+}
+pub struct Model {
+    location: Location,
+    locations: Vec<Location>,
+}
+
+impl Component for Model {
+    type Message = Msg;
+    type Properties = ();
+
+    fn create(_ctx: &Context<Self>) -> Self {
+        let aachen = Location {
+            name: "Aachen".to_string(),
+            lat: Point(50.7597f64, 6.0967f64),
+        };
+        let stuttgart = Location {
+            name: "Stuttgart".to_string(),
+            lat: Point(48.7784f64, 9.1742f64),
+        };
+        let locations = vec![aachen, stuttgart];
+        let location = locations[0].clone();
+        Self { location, locations }
+    }
+
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
+        true
+    }
+
+    fn changed(&mut self, _ctx: &Context<Self>, _props: &<Self as yew::Component>::Properties) -> bool {
+        false
+    }
+
+    fn view(&self, _ctx: &Context<Self>) -> Html {
+        html! {
+            <>
+                <MapComponent location={&self.location}  />
+            </>
+        }
+    }
 }
