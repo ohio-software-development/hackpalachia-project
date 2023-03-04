@@ -22,16 +22,16 @@ pub struct MapComponent {
 pub struct Point(pub f64, pub f64);
 
 #[derive(PartialEq, Clone, Debug)]
-pub struct City {
+pub struct Location {
     pub name: String,
     pub lat: Point,
 }
 
-impl ImplicitClone for City {}
+impl ImplicitClone for Location {}
 
 #[derive(PartialEq, Properties, Clone)]
 pub struct Props {
-    pub city: City,
+    pub Location: Location,
 }
 
 impl MapComponent {
@@ -55,7 +55,7 @@ impl Component for MapComponent {
         Self {
             map: leaflet_map,
             container,
-            lat: props.city.lat,
+            lat: props.Location.lat,
         }
     }
 
@@ -73,10 +73,10 @@ impl Component for MapComponent {
     fn changed(&mut self, ctx: &Context<Self>, _prop: &<Self as Component>::Properties) -> bool {
         let props = ctx.props();
 
-        if self.lat == props.city.lat {
+        if self.lat == props.Location.lat {
             false
         } else {
-            self.lat = props.city.lat;
+            self.lat = props.Location.lat;
             self.map.setView(&LatLng::new(self.lat.0, self.lat.1), 11.0);
             true
         }
