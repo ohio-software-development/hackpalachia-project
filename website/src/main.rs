@@ -1,5 +1,5 @@
-mod app;
-mod components;
+pub mod app;
+pub mod components;
 use app::App;
 
 fn main() {

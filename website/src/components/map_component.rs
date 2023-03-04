@@ -10,6 +10,8 @@ use web_sys::{
     Node,
 };
 
+use gloo_console::log;
+
 pub enum Msg {}
 
 pub struct MapComponent {
@@ -47,7 +49,7 @@ impl Component for MapComponent {
 
     fn create(ctx: &Context<Self>) -> Self {
         let props = ctx.props();
-
+        log!("did props");
         let container: Element = document().create_element("div").unwrap();
         let container: HtmlElement = container.dyn_into().unwrap();
         container.set_class_name("map");
@@ -98,12 +100,13 @@ fn add_tile_layer(map: &Map) {
     )
     .addTo(map);
 }
-pub struct Model {
+
+pub struct Map_Model {
     location: Location,
     locations: Vec<Location>,
 }
 
-impl Component for Model {
+impl Component for Map_Model {
     type Message = Msg;
     type Properties = ();
 
@@ -129,7 +132,7 @@ impl Component for Model {
         false
     }
 
-    fn view(&self, _ctx: &Context<Self>) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <>
                 <MapComponent location={&self.location}  />
