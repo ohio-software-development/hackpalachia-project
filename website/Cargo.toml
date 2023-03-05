@@ -17,6 +17,8 @@ leaflet = "0.2.2"
 serde = "1.0.152"
 wasm-bindgen = "0.2.84"
 yew = { version="0.20", features=["csr"] }
+csv = "1.2.0"
+file = "1.1.2"
 [dependencies.web-sys]
 version = "0.3.61"
 features = ["HtmlAnchorElement", "console", "Window", "Document"]

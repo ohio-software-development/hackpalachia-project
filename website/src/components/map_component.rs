@@ -1,4 +1,4 @@
-use leaflet::{LatLng, Map, TileLayer};
+use leaflet::{LatLng, Map, TileLayer, Marker};
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 use yew::html::ImplicitClone;
@@ -9,6 +9,10 @@ use web_sys::{
     HtmlElement,
     Node,
 };
+use std::error::Error;
+use std::fs::File;
+use std::ops::Add;
+use std::path::Path;
 
 use gloo_console::log;
 
@@ -23,10 +27,13 @@ pub struct MapComponent {
 #[derive(Copy, Clone, Debug, PartialEq)]
 pub struct Point(pub f64, pub f64);
 
-#[derive(PartialEq, Clone, Debug)]
+#[derive(PartialEq, Clone, Debug, serde::Deserialize)]
 pub struct Location {
     pub name: String,
-    pub lat: Point,
+    pub lat: f64,
+    pub lng: f64,
+    pub description: String,
+    pub tags: String,
 }
 
 impl ImplicitClone for Location {}
@@ -43,21 +50,39 @@ impl MapComponent {
     }
 }
 
+fn input_points() -> Vec<Location> {
+    vec![
+        Location {name: "Baker University Center".to_string(), lat: 39.32485454515665, lng: -82.10173937251054, description: "Every floor has tampons within the bathrooms".to_string(), tags: "tampons".to_string()},
+        Location {name: "Grover Hall".to_string(), lat: 39.323893291467755, lng: -82.10328344849286, description: "First floor restroom usually has tampons".to_string(), tags: "tampons".to_string()},
+        
+        Location {name: "Hudson Health Center".to_string(), lat: 39.32824750094719, lng: -82.0987955000003, description: "Mental health clinic located on the third floor".to_string(), tags: "mental-health".to_string()},
+        
+    ]
+}
+
 impl Component for MapComponent {
     type Message = Msg;
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
         let props = ctx.props();
-        log!("did props");
         let container: Element = document().create_element("div").unwrap();
         let container: HtmlElement = container.dyn_into().unwrap();
         container.set_class_name("map");
         let leaflet_map = Map::new_with_element(&container, &JsValue::NULL);
+        
+        for i in input_points() {
+            let new_marker = Marker::new(&LatLng::new(i.lat, i.lng));
+            new_marker.addTo(&leaflet_map);
+            new_marker.bindPopup(&i.description.into(), &"0".into());
+        }
+
+
+
         Self {
             map: leaflet_map,
             container,
-            lat: props.location.lat,
+            lat: Point(props.location.lat, props.location.lng),
         }
     }
 
@@ -75,10 +100,10 @@ impl Component for MapComponent {
     fn changed(&mut self, ctx: &Context<Self>, _prop: &<Self as Component>::Properties) -> bool {
         let props = ctx.props();
 
-        if self.lat == props.location.lat {
+        if self.lat == Point(props.location.lat, props.location.lng) {
             false
         } else {
-            self.lat = props.location.lat;
+            self.lat = Point(props.location.lat, props.location.lng);
             self.map.setView(&LatLng::new(self.lat.0, self.lat.1), 11.0);
             true
         }
@@ -101,25 +126,24 @@ fn add_tile_layer(map: &Map) {
     .addTo(map);
 }
 
-pub struct Map_Model {
+pub struct MapModel {
     location: Location,
     locations: Vec<Location>,
 }
 
-impl Component for Map_Model {
+impl Component for MapModel {
     type Message = Msg;
     type Properties = ();
 
     fn create(_ctx: &Context<Self>) -> Self {
-        let aachen = Location {
-            name: "Aachen".to_string(),
-            lat: Point(50.7597f64, 6.0967f64),
+        let baker = Location {
+            name: "Baker".to_string(),
+            lat: 39.32485454515665,
+            lng: -82.10173937251054,
+            description: "Baker university center".to_string(),
+            tags: "tampons".to_string(),
         };
-        let stuttgart = Location {
-            name: "Stuttgart".to_string(),
-            lat: Point(48.7784f64, 9.1742f64),
-        };
-        let locations = vec![aachen, stuttgart];
+        let locations = vec![baker];
         let location = locations[0].clone();
         Self { location, locations }
     }
@@ -132,7 +156,7 @@ impl Component for Map_Model {
         false
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
             <>
                 <MapComponent location={&self.location}  />
