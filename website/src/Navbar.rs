@@ -8,7 +8,7 @@ pub fn NavBar() -> Html {
                 <li class = "li"><a class = "a" href = "index.html">{"Home"} </a></li>
                 <li class = "li"><a class = "a" href = "#gmap">{"Map"} </a></li>
                 <li class = "li"><a class = "a" href = "https://www.ohio.edu/international-student-scholar-services/health-care">{"Resources"} </a></li>
-                <li class = "li"><a class = "a" href = "/my-lin/">{"test"}</a></li>
+                <li class = "li"><a class = "a" href = "https://github.com/ohio-software-development/hackpalachia-project">{"Repo"}</a></li>
             </ul>
         </div>
     }
