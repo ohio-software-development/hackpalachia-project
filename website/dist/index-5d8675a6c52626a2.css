@@ -13,7 +13,6 @@ body {
   font-size: 1.5rem;
 }
 body .map {
-  width: 800px;
   height: 400px;
 }
 body .component-container {
@@ -152,6 +151,7 @@ Hans Engebretsen at https://codepen.io/hans/ */
   height: 30px;
   border-radius: 30px;
   padding: 10px 20px;
+  margin-top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -160,18 +160,32 @@ Hans Engebretsen at https://codepen.io/hans/ */
 }
 
 .search-input {
-  width: 200px;
+  width: 650px;
   transition: 2s;
+  border: none;
+  border-left: 2px solid black;
 }
 
 .search-input:hover {
-  width: 400px;
+  width: 750px;
+}
+
+.buttonClean {
+  position: absolute;
+  right: -20%;
+  bottom: 2.5%;
+  background: transparent;
+  border: none !important;
+  font-size: 0;
+}
+
+.buttonClean:hover {
+  cursor: pointer;
 }
 
 .buddy {
-  position: absolute;
-  right: 3%;
-  bottom: 3%;
+  width: 35%;
+  height: 35%;
 }
 
 /*.search-box .search-input{
