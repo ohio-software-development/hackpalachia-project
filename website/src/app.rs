@@ -1,13 +1,12 @@
+use crate::components::map_component::{Location, MapComponent, Map_Model, Point};
 use yew::prelude::*;
-use crate::components::map_component::{Map_Model, Location, Point, MapComponent};
 
-use crate::Gmap::Gmap;
 use crate::Navbar::NavBar;
 use crate::SearchBar::SearchBar;
 use crate::Twilio::Twilio;
 
 #[function_component(App)]
-pub fn app() -> Html { 
+pub fn app() -> Html {
     html! {
         <main>
             <NavBar/>
