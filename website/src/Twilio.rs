@@ -22,8 +22,8 @@ fn output_stuff(){
 #[function_component]
 pub fn Twilio() -> Html {
     html! {
-        <button onclick = {move |_| {output_stuff();}}>
-        { "Click me!" }
+        <button class = "buttonClean" onclick = {move |_| {output_stuff();}}>
+            <img src = "img/robot.png" class = "buddy"/>
         </button>
     }
 }
