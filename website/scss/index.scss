@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,400);
 
-
 html,
 body {
   height: 100%;
@@ -13,6 +12,22 @@ body {
 
   background: linear-gradient(to bottom right, #444444, #009a5b);
   font-size: 1.5rem;
+  
+  .map {
+    width: 800px;
+    height: 400px;
+  }
+
+  .component-container {
+    border-radius: 0.5em;
+    padding: 1em;
+  }
+
+  .map-container {
+    border: 1px solid red;
+    margin-bottom: 1em;
+  }
+  
 }
 
 main {
@@ -37,10 +52,6 @@ h1 + .subtitle {
   font-size: .8em;
   color: #FAF9F6;
 
-}
-
-.gmap{
-  font-size: 4.75em;
 }
 
 /* The CSS for the navbar and items were inspired by
