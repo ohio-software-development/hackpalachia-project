@@ -13,6 +13,20 @@ body {
 
   background: linear-gradient(to bottom right, #444444, #009a5b);
   font-size: 1.5rem;
+
+  .map {
+    height: 400px;
+  }
+
+  .component-container {
+    border-radius: 0.5em;
+    padding: 1em;
+  }
+
+  .map-container {
+    border: 1px solid red;
+    margin-bottom: 1em;
+  }
 }
 
 main {

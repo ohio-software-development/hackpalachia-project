@@ -10,12 +10,11 @@ use crate::Twilio::Twilio;
 pub fn app() -> Html { 
     html! {
         <main>
-            <Map_Model />
             <NavBar/>
             <h1>{ "OU Care" }</h1>
             <span class="subtitle"><a class = "a2" href = "https://github.com/ohio-software-development">{ "from OUSDC " }<i class="heart" /></a></span>
             <SearchBar/>
-            <Gmap/>
+            <Map_Model/>
             <Twilio/>
         </main>
     }
