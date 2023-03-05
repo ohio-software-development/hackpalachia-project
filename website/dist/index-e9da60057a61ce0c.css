@@ -20,7 +20,6 @@ body .component-container {
   padding: 1em;
 }
 body .map-container {
-  border: 1px solid red;
   margin-bottom: 1em;
 }
 
@@ -164,10 +163,6 @@ Hans Engebretsen at https://codepen.io/hans/ */
   transition: 2s;
   border: none;
   border-left: 2px solid black;
-}
-
-.search-input:hover {
-  width: 750px;
 }
 
 .buttonClean {
