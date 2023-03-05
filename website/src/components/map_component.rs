@@ -101,12 +101,12 @@ fn add_tile_layer(map: &Map) {
     .addTo(map);
 }
 
-pub struct Map_Model {
+pub struct MapModel {
     location: Location,
     locations: Vec<Location>,
 }
 
-impl Component for Map_Model {
+impl Component for MapModel {
     type Message = Msg;
     type Properties = ();
 
@@ -132,7 +132,7 @@ impl Component for Map_Model {
         false
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
             <>
                 <MapComponent location={&self.location}  />
