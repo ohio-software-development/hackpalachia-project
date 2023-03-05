@@ -7,13 +7,14 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
-  
+
 <link rel="preload" href="/trunk-template-bfe22890583a7a56_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 <link rel="modulepreload" href="/trunk-template-bfe22890583a7a56.js"></head>
 
   <body>
 
 <script type="module">import init from '/trunk-template-bfe22890583a7a56.js';init('/trunk-template-bfe22890583a7a56_bg.wasm');</script><script>(function () {
+
     var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     var url = protocol + '//' + window.location.host + '/_trunk/ws';
     var poll_interval = 5000;
