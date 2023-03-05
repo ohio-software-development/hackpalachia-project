@@ -1,9 +1,8 @@
 
 pub mod app;
 pub mod components;
-mod app;
-pub mod gmap;
-pub mod navbar;
+pub mod Gmap;
+pub mod Navbar;
 pub mod SearchBar;
 pub mod Twilio;
 
