@@ -25,4 +25,6 @@ features = ["HtmlAnchorElement", "console", "Window", "Document"]
 wasm-bindgen = "=0.2.84"
 nodejs-helper = "0.0.3"
 dotenv = "0.15.0"
+log = "0.4"
+
 
